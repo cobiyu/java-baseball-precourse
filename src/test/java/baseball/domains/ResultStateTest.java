@@ -54,6 +54,38 @@ class ResultStateTest {
         assertEquals(resultState.getStateMessage(), "1스트라이크 2볼");
     }
 
+    @DisplayName("1볼 Result")
+    @Test
+    public void oneBallTest(){
+        //given
+        ResultState resultState = new ResultState();
+
+        // when
+        resultState.addNumberCompareResultType(NumberCompareResultType.NOTHING);
+        resultState.addNumberCompareResultType(NumberCompareResultType.NOTHING);
+        resultState.addNumberCompareResultType(NumberCompareResultType.BALL);
+
+        // then
+        assertEquals(resultState.toGameResultType(), GameResultType.FAIL);
+        assertEquals(resultState.getStateMessage(), "1볼");
+    }
+
+    @DisplayName("2스트라이크 Result")
+    @Test
+    public void twoStrikeTest(){
+        //given
+        ResultState resultState = new ResultState();
+
+        // when
+        resultState.addNumberCompareResultType(NumberCompareResultType.STRIKE);
+        resultState.addNumberCompareResultType(NumberCompareResultType.NOTHING);
+        resultState.addNumberCompareResultType(NumberCompareResultType.STRIKE);
+
+        // then
+        assertEquals(resultState.toGameResultType(), GameResultType.FAIL);
+        assertEquals(resultState.getStateMessage(), "2스트라이크");
+    }
+
     @DisplayName("낫싱 Result")
     @Test
     public void nothingTest(){
