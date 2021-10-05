@@ -70,4 +70,17 @@ class BaseballNumberTest {
 
     assertTrue(exception.getMessage().contains(Message.ONLY_ONE_TO_NINE));
   }
+
+  @DisplayName("중복된 숫자가 전달된다면 BaseballNumberValidationException 발생")
+  @Test
+  void duplicationExceptionTest(){
+    String number = "119";
+
+    Exception exception = assertThrows(
+      BaseballNumberValidationException.class,
+      () -> new BaseballNumber(number)
+    );
+
+    assertTrue(exception.getMessage().contains(Message.NOT_DUPLICATION));
+  }
 }

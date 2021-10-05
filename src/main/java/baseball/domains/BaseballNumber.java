@@ -1,5 +1,8 @@
 package baseball.domains;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import baseball.utils.Message;
 import baseball.exceptions.BaseballNumberValidationException;
 
@@ -32,6 +35,27 @@ public class BaseballNumber {
   }
 
   /**
+   * String contains
+   */
+  public boolean contains(CharSequence s) {
+    return stringNumber.contains(s);
+  }
+
+  /**
+   * String length
+   */
+  public int length() {
+    return stringNumber.length();
+  }
+
+  /**
+   * String charAt
+   */
+  public char charAt(int index) {
+    return stringNumber.charAt(index);
+  }
+
+  /**
    * validate
    * @param stringNumber validation 체크 할 string 형태의 숫자
    */
@@ -48,6 +72,21 @@ public class BaseballNumber {
     if(isContainZero(stringNumber)){
       throw new BaseballNumberValidationException(Message.ONLY_ONE_TO_NINE);
     }
+    if(isDuplicateNumber(stringNumber)){
+      throw new BaseballNumberValidationException(Message.NOT_DUPLICATION);
+    }
+  }
+
+  /**
+   * 중복된 숫자 체크
+   */
+  private boolean isDuplicateNumber(String stringNumber){
+    Set<Character> stringSet = new HashSet<>();
+    for (int i = 0; i < stringNumber.length() ; i++) {
+      stringSet.add(stringNumber.charAt(i));
+    }
+    
+    return stringSet.size() != stringNumber.length();
   }
 
   /**
