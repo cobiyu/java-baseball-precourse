@@ -5,6 +5,6 @@ package baseball.domains;
  *
  * 게임 결과 종류
  */
-public enum ResultType {
+public enum GameResultType {
     SUCCESS, ERROR, FAIL
 }
