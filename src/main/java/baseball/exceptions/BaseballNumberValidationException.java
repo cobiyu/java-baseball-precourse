@@ -6,14 +6,7 @@ package baseball.exceptions;
  * @author cobiyu
  */
 public class BaseballNumberValidationException extends RuntimeException {
-  private final String message;
-
   public BaseballNumberValidationException(String message) {
-    this.message = message;
-  }
-
-  @Override
-  public String getMessage() {
-    return "[ERROR] " + message;
+    super(message);
   }
 }
